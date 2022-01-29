@@ -6,8 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('Dogs', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
-      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     name: {
@@ -15,17 +14,17 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     height: {
-      type: DataTypes.RANGE (INTEGER),
+      type: DataTypes.STRING,
       allowNull:false,
     },
     weight:{
-      type: DataTypes.RANGE (INTEGER),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     life_span: {
-      type: DataTypes.RANGE (INTEGER),
+      type: DataTypes.STRING,
     },
-    imageurl: {
+    image: {
       type: DataTypes.STRING,
     }
   });

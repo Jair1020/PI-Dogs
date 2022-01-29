@@ -1,20 +1,21 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { BrowserRouter as Router} from 'react-router-dom';
-import creation_page from './components/Creation_page/creation_page';
-import Detail_page from './components/Detail_page/Detail_page';
+import CreationPage from './components/Creation_page/CreationPage';
+import DetailPage from './components/Detail_page/DetailPage';
 import Homepage from './components/Homepage/Homepage';
-import Lading_page from './components/Lading_page/Lading_page';
+import LadingPage from './components/Lading_page/LadingPage';
+import './index.css';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route  path= "/" element={<Lading_page/>} />
+          <Route  path= "/" element={<LadingPage/>} />
           <Route  path= "/homepage" element={<Homepage/>}/>
-          <Route  path= "/Dogs/:DogsId" element={<Detail_page/>}  />
-          <Route  path= "/Dog/create" element={<creation_page/>}/>
+          <Route  path= "/Dogs/:DogsId" element={<DetailPage/>}/>
+          <Route  path= "/Dog/create" element={<CreationPage/>}/>
         </Routes>
       </Router>
     </div>

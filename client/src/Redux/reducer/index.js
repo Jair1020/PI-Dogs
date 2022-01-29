@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_DOG, GET_TEMPERAMENTS } from '../actions';
+import { GET_ALL_DOGS, GET_DOG, GET_DOG_ID, GET_TEMPERAMENTS } from '../actions';
 
 
 const initialState={
@@ -24,8 +24,13 @@ export default function rootReducer (state= initialState, action){
 		case GET_TEMPERAMENTS:
 			return {
 				...state,
-				temperaments: action.payload
+				temperaments: [...action.payload]
 			}
+		case GET_DOG_ID:
+			return{
+				...state,
+				dog:action.payload
+			}	
 		default: return state   		
 	};
 }

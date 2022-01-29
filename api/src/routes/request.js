@@ -5,7 +5,7 @@ const {Dogs , Temperaments}= require ('../db');
 
 
 const get_api= async ()=>{
-
+try{
    const req= await axios.get (`https://api.thedogapi.com/v1/breeds?api_key=${YOUR_API_KEY}`)
 
    const inf= await req.data.map (d=>{
@@ -20,15 +20,32 @@ const get_api= async ()=>{
       }
    })
    return inf
+}catch (err){
+   console.log (err)
+}
+
 }
 
 
 const get_bd = async ()=>{
 
-   return await Dogs.findAll ({
-      include: [Temperaments]
-   }) 
+   let dogs_db= await Dogs.findAll ({
+      include: {
+         model: Temperaments,
+         attributes: ["name"],
+         through: {
+            attributes: [], 
+          }
+      }
+      
+   })
 
+   dogs_db= JSON.parse (JSON.stringify(dogs_db)) 
+   let temperaments = dogs_db.map (e=> {
+      let obj= {...e, temperaments: e.Temperaments.map (e=>e.name).join()}
+      return obj
+   })
+   return temperaments
 }
 
 module.exports = {

@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {get_api, get_bd} = require ('./request');
-const { Temperaments} = require ('../db')
+const { Temperaments, Dogs} = require ('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -17,13 +17,13 @@ router.get ('/', async (req , res)=>{
 router.get ('/dogs', async (req , res)=>{
   const dogs_api= await get_api ();
   const dogs_bd = await get_bd ()
-  const dogs = [...dogs_api,...dogs_bd];
+  const dogs = [...dogs_bd,...dogs_api];
   const {name}= req.query;
   if (name){
     const breed = dogs.filter (d=> d.name.toLowerCase().includes (name.toLowerCase()))
     return res.json (breed)
   }
-  /* console.log (dogs) */
+
   res.json (dogs)
 })
 
@@ -32,21 +32,23 @@ router.get ('/dogs/:idRaza', async (req, res)=>{
   const dogs_api= await get_api ();
   const dogs_bd = await get_bd ()
   const dogs = [...dogs_api,...dogs_bd];
-  const breed= dogs.find (d=>d.id === parseInt (idRaza))
+  const breed= dogs.find (d=>d.id == (idRaza))
+
   res.json (breed)
 })
 
 router.get ('/temperament' , async (req,res)=>{
   const dogs_api= await get_api ();
   const temperament_bd = await Temperaments.findAll ();
+  console.log (temperament_bd)
 
-  if (temperament_bd.length>0){
+  if (temperament_bd.length){
     return res.json (temperament_bd)
   }
 
   const temperament=  dogs_api.reduce ((acc,e)=>{
     if (e.temperaments){ 
-    let tem=  e.temperaments.split (',')
+    let tem=  e.temperaments.replace(/\s+/g, '').split (',')
     tem.forEach(element => {
       if (!acc.includes (element)) acc.push (element)
     })}
@@ -55,31 +57,31 @@ router.get ('/temperament' , async (req,res)=>{
     const promiss_tem= temperament.map (e=>{
       return Temperaments.create ({
         name: e
-      })
-    }) 
+      }) 
+    })  
     Promise.all (promiss_tem)
-    .then (res => console.log ('temperament saved'))
+    .then (resp => console.log ('temperament saved'))
     
-
     return res.json (temperament)
+
 })
 
 router.post ('/dog', async (req, res)=>{
-  const {name, height, width, life_span, temperaments, urlimg } = req.body;
+  const {name, height, weight, life_span, temperaments, image } = req.body;
   const beer= await Dogs.create ({
     name,
-    width,
+    weight,
     height,
     life_span,
-    urlimg
-  })
-  temperaments.map (async (e)=>{
+    image
+  }) 
+  temperaments?.map (async (e)=>{
     const temperament= await Temperaments.findOne ({
       where:{
         name: e
       }, 
     })
-    temperament && dog.setTemperaments (temperament)
+    temperament && beer.setTemperaments (temperament)
   })
 
   return res.json ('Successfully created')
