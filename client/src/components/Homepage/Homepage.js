@@ -6,14 +6,16 @@ import Filtrado from "../FilterComp/filtrado";
 import Tabla from "../TableComp/tabla";
 import { filteredDogs } from "../../functions/functions";
 import Style from "./Homepage.module.css";
+import Pagination from "../PaginationComp/Pagination";
 
 export default function Homepage() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dogsPerPage, setDogsPerPage] = useState (8)
   const [search_name, setsearch_name] = useState("");
   const [search_temperament, setsearch_temperament] = useState("");
   const [orderselect, setorderselect] = useState();
   const [checkbox, setCheckbox] = useState(false);
-
+ 'Holaa'
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,42 +25,51 @@ export default function Homepage() {
 
   const dogs = useSelector((state) => state.dogs);
 
-  let [filtered, filter] = filteredDogs(
+  let filter = filteredDogs(
     dogs,
     checkbox,
     orderselect,
     search_name,
     search_temperament,
-    currentPage
   );
 
+  let pages= []
+  for (let i=1; i<=Math.ceil(filter.length/dogsPerPage); i++){
+    pages.push (i);
+  }
+  const indexLastDog= currentPage*dogsPerPage;
+  const indexFirstDog = indexLastDog-dogsPerPage;
+  const currentDogs= filter.slice (indexFirstDog, indexLastDog)
+
   const nextPage = () => {
-      if (currentPage <= filter.length - 8) setCurrentPage(currentPage + 8);
+      if (currentPage < Math.ceil((filter.length)/dogsPerPage)) setCurrentPage(currentPage+1);
   };
 	
   const PreviousPage = () => {
-    if (currentPage > 0) setCurrentPage(currentPage - 8);
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
-
+  const handlePage= (event)=>{
+    setCurrentPage (Number (event.target.id))
+  }
   const onsearch_nameChange = (event) => {
-    setCurrentPage(0);
+    setCurrentPage(1);
     setsearch_name(event.target.value);
   };
   const onsearch_temperament = (event) => {
-    setCurrentPage(0);
+    setCurrentPage(1);
     setsearch_temperament(event.target.value);
   };
 
   const onorderselectChange = (event) => {
-    setCurrentPage(0);
+    setCurrentPage(1);
     setorderselect(event.target.value);
   };
 
   const onchangecheckbox = (event) => {
-    setCurrentPage(0);
+    setCurrentPage(1);
     setCheckbox(event.target.checked);
   };
-
+  console.log (currentPage)
   return (
     <div className={Style.contenedor}>
       <div className={Style.NavBar}>
@@ -78,16 +89,16 @@ export default function Homepage() {
         <h1>Breeds</h1>
       </div>
       <div className={Style.pag}>
-        <button className={Style.previous} onClick={PreviousPage}>
-				⬅ Previous
-        </button>
-        &nbsp;
-        <button className={Style.next} onClick={nextPage}>
-          Next ➡
-        </button>
+        <Pagination
+           pages={pages}
+           handlePage={handlePage}
+           nextPage={nextPage}
+           PreviousPage= {PreviousPage} 
+           currentPage={currentPage}     
+           />
       </div>
       <div className={Style.tabla}>
-        <Tabla filtered={filtered} />
+        <Tabla filtered={currentDogs} />
       </div>
     </div>
   );

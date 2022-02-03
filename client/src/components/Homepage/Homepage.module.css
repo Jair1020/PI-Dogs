@@ -2,7 +2,7 @@
 
 .contenedor {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width:1200px;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -33,17 +33,14 @@
 }
 
 .pag{
+ display: flex;
+ justify-content: center;
 
 }
 .tabla{
 
 }
-.pag {
-  display: flex;
-  flex-direction: row;
-  justify-content:space-around;
-  font-size: 1rem;
-}
+
 
 
 

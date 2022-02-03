@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createdog, gettemperamets } from "../../Redux/actions";
+import { createdog, getalldogs, gettemperamets } from "../../Redux/actions";
 import NavBar from "../Nav_bar/NavBar";
 import Style from './CreationPage.module.css'
 import { validate } from "../../functions/functions";
@@ -22,16 +22,17 @@ export default function CreationPage() {
   } 
   const [img, setimg] = useState("");
   const [form, setForm] = useState({...formempty});
-  /* const [temperament, setTemperaments]= useState () */
   const [error, setError]= useState ({life_span:' '})
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(gettemperamets())
+    dispatch (getalldogs())
   
   }, []);
   let temperaments= useSelector((state) => state.temperaments)
+  let dogs= useSelector ((state)=>state.dogs)
 
 
   const onChangeForm = (event) => {
@@ -39,7 +40,7 @@ export default function CreationPage() {
       ...form,
       [event.target.name]: event.target.value,
     });
-    setError (validate ({...form, [event.target.name]: event.target.value,}))
+    setError (validate ({...form, [event.target.name]: event.target.value,},dogs))
   };
 
   const handleOnclick = (event) => {
@@ -124,7 +125,7 @@ export default function CreationPage() {
             )):null}
           </select>
           {form.temperaments?.map((e) => (
-            <label key={e}>{e + ',' +' '} </label>
+            <label key={e}>{e + ', '} </label>
           ))}
         </div>
         <div>

@@ -8,7 +8,7 @@ export const GET_DOG_ID= 'GET_DOG_ID';
 export const API_BD = 'http://localhost:3001';
 
 
-export const getalldogs = ()=>{
+/* export const getalldogs = ()=>{
   return async function (dispatch){
     try{
       let dogs= await axios.get (`${API_BD}/dogs`)
@@ -16,6 +16,22 @@ export const getalldogs = ()=>{
         type: GET_ALL_DOGS,
         payload: dogs.data
       });
+    }catch (err){
+      console.log (err)
+    }
+  }
+}  */
+
+export const getalldogs = ()=>{
+  return function (dispatch){
+    try{
+      axios.get (`${API_BD}/dogs`)
+      .then ((res)=>{ 
+        dispatch ({
+          type: GET_ALL_DOGS,
+          payload: res.data
+        });
+      })
     }catch (err){
       console.log (err)
     }
