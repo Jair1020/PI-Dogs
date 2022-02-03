@@ -27,18 +27,17 @@ router.get ('/dogs', async (req , res, next)=>{
   }
   })
   
-router.get ('/dogs/:idRaza', async (req, res,next)=>{
+router.get ('/dogs/:idRaza', async (req, res, next)=>{
   try{
-
+    const {idRaza}= req.params;
+    const dogs_api= await get_api ();
+    const dogs_bd= await get_bd ()
+    const dogs = [...dogs_api,...dogs_bd];
+    const breed= dogs.find (d=>d.id == (idRaza))
+    res.json (breed)
   }catch(error){
     next (error)
   }
-  const {idRaza}= req.params;
-  const dogs_api= await get_api ();
-  const dogs_bd = await get_bd ()
-  const dogs = [...dogs_api,...dogs_bd];
-  const breed= dogs.find (d=>d.id == (idRaza))
-  res.json (breed)
 })
 
 router.get ('/temperament' , async (req,res, next)=>{

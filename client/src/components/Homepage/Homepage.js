@@ -7,6 +7,7 @@ import Tabla from "../TableComp/tabla";
 import { filteredDogs } from "../../functions/functions";
 import Style from "./Homepage.module.css";
 import Pagination from "../PaginationComp/Pagination";
+import Loader from "../Loader/Loader";
 
 export default function Homepage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -98,7 +99,7 @@ export default function Homepage() {
            />
       </div>
       <div className={Style.tabla}>
-        <Tabla filtered={currentDogs} />
+      {currentDogs.length?<Tabla filtered={currentDogs}/>:<Loader/> }
       </div>
     </div>
   );

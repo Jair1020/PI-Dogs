@@ -4,7 +4,6 @@ import { GET_ALL_DOGS, GET_DOG, GET_DOG_ID, GET_TEMPERAMENTS } from '../actions'
 const initialState={
   dogs: [],
   dog: [],
-  detail:[],
   temperaments:[]
 }
 export default function rootReducer (state= initialState, action){
