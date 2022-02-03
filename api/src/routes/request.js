@@ -32,10 +32,6 @@ const get_bd = async ()=>{
    let dogs_db= await Dogs.findAll ({
       include: {
          model: Temperaments,
-         attributes: ["name"],
-         through: {
-            attributes: [], 
-          }
       }
       
    })

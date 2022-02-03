@@ -15,7 +15,7 @@ export default function Homepage() {
   const [search_temperament, setsearch_temperament] = useState("");
   const [orderselect, setorderselect] = useState();
   const [checkbox, setCheckbox] = useState(false);
- 'Holaa'
+
   const dispatch = useDispatch();
 
   useEffect(() => {
