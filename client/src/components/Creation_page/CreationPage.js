@@ -74,6 +74,7 @@ export default function CreationPage() {
     }
     dispatch (createdog(create))
     setForm({...formempty})
+    alert ('Dog created')
 }
   return (
     <div className={Style.contenedor} >

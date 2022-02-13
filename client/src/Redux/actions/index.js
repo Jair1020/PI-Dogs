@@ -6,6 +6,7 @@ export const GET_DOG = 'GET_DOG';
 export const GET_TEMPERAMENTS='GET_TEMPERAMENTS';
 export const GET_DOG_ID= 'GET_DOG_ID';
 export const API_BD = 'http://localhost:3001';
+export const CLEAN_DOG= 'CLEAN_DOG'
 
 
 /* export const getalldogs = ()=>{
@@ -32,6 +33,7 @@ export const getalldogs = ()=>{
           payload: res.data
         });
       })
+      
     }catch (err){
       console.log (err)
     }
@@ -92,5 +94,9 @@ export const getdogid = (id)=>{
     }
   }
 }
-
+export const cleandog = ()=>{
+  return {
+    type: CLEAN_DOG,
+  }
+}
 

@@ -1,5 +1,4 @@
 const axios = require ('axios');
-const e = require('express');
 const {YOUR_API_KEY} = process.env;
 const {Dogs , Temperaments}= require ('../db');
 
@@ -23,6 +22,15 @@ try{
 }catch (err){
    console.log (err)
 }
+   const get_apid= async (id)=> {
+      try{
+         req = await axios.get (`https://api.thedogapi.com/v1/breeds/search?q=${id}`)
+
+      }catch (err){
+         console.log (err)
+      }
+   }
+
 
 }
 

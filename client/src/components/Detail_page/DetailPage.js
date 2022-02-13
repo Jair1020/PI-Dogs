@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getdogid } from "../../Redux/actions";
+import { cleandog, getdogid } from "../../Redux/actions";
 import Style from "./DetailPage.module.css";
 import NavBar from "../Nav_bar/NavBar";
 
 export default function Detail_page() {
   const { DogsId } = useParams();
   const dispatch = useDispatch();
+  useEffect (()=>{
+    return ()=> dispatch (cleandog());
+  },[])
   useEffect(() => {
     dispatch(getdogid(DogsId));
   }, []);
