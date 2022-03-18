@@ -1,0 +1,92 @@
+
+
+.cards {
+
+  background-color:#fdffb6;
+  border-radius: 10px;
+  transition: all 0.3s ease-out;
+  margin-block: 20px;
+  width: 30vw;
+  height: 350px;
+  overflow: hidden;
+}
+
+
+.cards2{
+  position: relative;
+  bottom: 56%;
+  opacity: 0;
+  transition: all 1s ease-out;
+  height: 35%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:center;
+  padding:5px ;
+  align-items: center;
+  column-gap: 5px;
+}
+.weight{
+  font-weight:bold;
+  font-size: medium;
+  width: auto;
+}
+.temperaments{
+  font-weight:bold;
+  font-size: medium;
+  width: 100%;
+
+  margin: 0;
+}
+.tem{
+  width: auto;
+  align-self: flex-start;
+  
+}
+
+
+.cards2:hover{
+  transition: all 1.5s ease-out;
+  background-color: rgb(255, 255, 255,0.5);
+  opacity: 100;
+  
+}
+.link {
+  text-decoration: none;
+  color: #000;
+  
+}
+
+.cards2 button{
+  margin-block: 10px;
+  padding: 10px 40px;
+  cursor: pointer;
+  border:none;
+  background-color:#fdffb6 ;
+  
+}
+
+
+.cards2 h4{
+  margin: 0;
+}
+
+
+.cards:hover {
+  box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.568);
+  transform: scale(1.02);
+}
+
+.cards img {
+  width: 30vw;
+  height: 80%;
+  border-radius: 10px 10px 0 0;
+  transition: all 1s ease-out;
+}
+.cards img:hover img {
+  transition: all 0.3s ease-out;
+}
+.cards img:hover img {
+  transform: scale(1.2, 1.2);
+}

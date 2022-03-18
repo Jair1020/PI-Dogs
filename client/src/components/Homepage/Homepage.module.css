@@ -34,8 +34,15 @@
  display: flex;
  justify-content: center;
 
+
 }
 
+.card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 
 
 

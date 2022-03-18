@@ -8,6 +8,7 @@ import { filteredDogs } from "../../functions/functions";
 import Style from "./Homepage.module.css";
 import Pagination from "../PaginationComp/Pagination";
 import Loader from "../Loader/Loader";
+import CardDog from "../CardDog/CardDog";
 
 export default function Homepage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -98,8 +99,18 @@ export default function Homepage() {
            currentPage={currentPage}     
            />
       </div>
-      <div className={Style.tabla}>
-      {currentDogs.length?<Tabla filtered={currentDogs}/>:<Loader/> }
+      <div className={Style.card}>
+      {currentDogs.length? currentDogs.map(e=>(
+       <CardDog
+       key={e.id}
+       id={e.id}
+       name={e.name}
+       weight={e.weight}
+       temperaments= {e.temperaments}
+       image= {e.image}  
+       />
+      ))
+      :<Loader/> }
       </div>
     </div>
   );
