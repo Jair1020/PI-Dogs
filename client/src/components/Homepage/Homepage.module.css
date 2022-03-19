@@ -2,6 +2,7 @@
 .contenedor {
   margin: 0 auto;
   max-width:1200px;
+  min-height: 100vh;
   height: 100%;
   display: grid;
   grid-template-columns: 130px 1fr;
