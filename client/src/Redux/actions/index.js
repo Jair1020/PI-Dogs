@@ -1,12 +1,12 @@
 import axios from 'axios';
-
 export const GET_ALL_DOGS = 'GET_ALL_DOGS';
 export const CREATE_DOG = 'CREATE_HOUSE';
 export const GET_DOG = 'GET_DOG';
 export const GET_TEMPERAMENTS='GET_TEMPERAMENTS';
 export const GET_DOG_ID= 'GET_DOG_ID';
-export const API_BD = 'http://localhost:3001';
+export const API_BD = process.env.REACT_APP_API;
 export const CLEAN_DOG= 'CLEAN_DOG'
+
 
 
 /* export const getalldogs = ()=>{

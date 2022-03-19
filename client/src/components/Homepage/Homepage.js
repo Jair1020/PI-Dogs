@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getalldogs, gettemperamets } from "../../Redux/actions";
 import NavBar from "../Nav_bar/NavBar";
 import Filtrado from "../FilterComp/filtrado";
-import Tabla from "../TableComp/tabla";
 import { filteredDogs } from "../../functions/functions";
 import Style from "./Homepage.module.css";
 import Pagination from "../PaginationComp/Pagination";
