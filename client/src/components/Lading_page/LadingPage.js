@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Style from "./LadingPage.module.css";
 import img from "../../Images/dog.png";
 import img2 from "../../Images/dog-relax.png";
+import img3 from '../../Images/Huella.png'
 /* import img3 from '../../Images/dog_bailando.gif' */
 
 export default function Lading_page() {
@@ -20,7 +21,7 @@ export default function Lading_page() {
        
         <div >
           <Link className={Style.Link} id="button" to="/homepage">
-            <h2 className={Style.btn} >Homepage</h2>
+            <img className={Style.btn} src={img3} ></img>
           </Link>
         </div>
       </div>

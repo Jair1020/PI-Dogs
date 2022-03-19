@@ -5,9 +5,12 @@
   max-width:1200px;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 130px 1fr;
   grid-template-rows: 60px 100px 50px 1fr;
   background-color: var(--color-background);
+  background-image: url('../../Images/Huellasin.png');
+  background-repeat: repeat;
+
   font-family: "Lobster", cursive;
 
 }
@@ -17,7 +20,7 @@
   grid-row: 1/5;
   background-color: black;
   width: 130px;
-  border-right: 3px solid white;
+  
 
 }
 
