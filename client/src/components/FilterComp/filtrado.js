@@ -1,9 +1,10 @@
 import React from 'react';
+import s from './filtrado.module.css'
 
 export default function Filtrado(props) {
   return (
-  <div>
-    <form>
+  <div className={s.cont} >
+    
 		  <input
 			name="breed"
 			placeholder="🔎 Search Name"
@@ -37,8 +38,8 @@ export default function Filtrado(props) {
 		  <input
 			type="checkbox"
 			onChange={props.onchangecheckbox}
-			/* checked={this.checked} */ name="breed created"
+			name="breed created"
 		  ></input>
-		</form>
+		
   </div>
   )}

@@ -35,8 +35,11 @@ export default function Homepage() {
     search_temperament,
   );
 
+  var minpag= currentPage>3?currentPage-3:1
+  var maxpag= currentPage+3<Math.ceil(filter.length/dogsPerPage)?currentPage+3:Math.ceil(filter.length/dogsPerPage)
+
   let pages= []
-  for (let i=1; i<=Math.ceil(filter.length/dogsPerPage); i++){
+  for (let i=minpag; i<=maxpag; i++){
     pages.push (i);
   }
   const indexLastDog= currentPage*dogsPerPage;
